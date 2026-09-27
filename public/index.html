@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <title>Overwrite 💖</title>
+  <style>
+    :root {
+      --cloudy-valley: #B1C7D4;
+      --cerulean-blue: #A5BCD6;
+      --tsunami: #849AAD;
+      --transparent-yellow: #F5EFC6;
+      --weather-board: #A1947F;
+      --volcanic-island: #605246;
+      --potting-soil: #4A2E27;
+      --java-brown: #231815;
+      --red-oxide: #5E1C23;
+      --sceptre-red: #4D0E12;
+
+      --text-rich: #FFFDF9;
+      --text-soft: #EAE3D5;
+      --text-muted: #B4C4D1;
+      --shadow: rgba(25, 16, 14, 0.40);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+    body {
+      background:
+        radial-gradient(circle at top, rgba(245, 239, 198, 0.45), transparent 48%),
+        radial-gradient(circle at 85% 20%, rgba(165, 188, 214, 0.42), transparent 50%),
+        radial-gradient(circle at 12% 85%, rgba(94, 28, 35, 0.22), transparent 52%),
+        linear-gradient(145deg, #A8C2D3 0%, #B8CBD8 24%, #A89B86 58%, #5A473C 86%, #2B1D19 100%);
+      color: var(--text-rich);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('asset/background.jpg') center/cover no-repeat;
+      opacity: 0.16;
+      pointer-events: none;
+      filter: saturate(1.15) contrast(1.05);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-family: 'VT323', monospace;
+      font-size: clamp(3.2rem, 7vw, 4.6rem);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
+      color: var(--transparent-yellow);
+      text-shadow: 0 4px 20px rgba(35, 24, 21, 0.5), 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      color: #D4E3ED;
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(35, 24, 21, 0.90), rgba(52, 36, 32, 0.86));
+      border-radius: 26px;
+      padding: 28px 24px 22px;
+      box-shadow: 0 24px 50px var(--shadow), 0 0 35px rgba(165, 188, 214, 0.15);
+      border: 1px solid rgba(165, 188, 214, 0.28);
+      backdrop-filter: blur(12px);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      background: rgba(20, 14, 12, 0.42);
+      padding: 5px;
+      border-radius: 14px;
+      border: 1px solid rgba(165, 188, 214, 0.18);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 110px;
+      padding: 11px 8px;
+      border: none;
+      background: transparent;
+      color: var(--cloudy-valley);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.82rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      color: var(--transparent-yellow);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(165, 188, 214, 0.35), rgba(132, 154, 173, 0.15));
+      color: var(--transparent-yellow);
+      box-shadow: inset 0 1px 0 rgba(245, 239, 198, 0.25), 0 3px 10px rgba(0,0,0,0.2);
+      border: 1px solid rgba(245, 239, 198, 0.40);
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      background: rgba(20, 14, 12, 0.45);
+      border: 1px solid rgba(165, 188, 214, 0.24);
+      border-radius: 12px;
+      padding: 14px 14px;
+      color: var(--text-rich);
+      font-size: 0.96rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    textarea:focus, input[type="text"]:focus {
+      border-color: var(--cerulean-blue);
+      box-shadow: 0 0 0 3px rgba(165, 188, 214, 0.30);
+      transform: translateY(-1px);
+    }
+
+    textarea { height: 100px; resize: none; margin-bottom: 14px; }
+
+    .btn {
+      width: 100%;
+      padding: 13px 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .btn:active { transform: translateY(0) scale(0.99); }
+
+    .btn-bad {
+      background: linear-gradient(135deg, #7A242D 0%, var(--red-oxide) 55%, var(--sceptre-red) 100%);
+      border: 1px solid rgba(245, 239, 198, 0.3);
+      color: var(--text-rich);
+      box-shadow: 0 4px 16px rgba(94, 28, 35, 0.4);
+    }
+    .btn-bad:hover {
+      background: linear-gradient(135deg, #8E2B35 0%, #6d1f27 55%, #591318 100%);
+      box-shadow: 0 6px 22px rgba(94, 28, 35, 0.6);
+    }
+
+    .btn-good {
+      background: linear-gradient(135deg, #7FA0B8 0%, var(--cerulean-blue) 100%);
+      color: var(--java-brown);
+      border: 1px solid rgba(245, 239, 198, 0.40);
+      box-shadow: 0 4px 16px rgba(132, 154, 173, 0.35);
+    }
+    .btn-good:hover {
+      background: linear-gradient(135deg, #8FB2CB 0%, #B8D0EB 100%);
+      box-shadow: 0 6px 20px rgba(132, 154, 173, 0.55);
+    }
+
+    .quick-letgo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(20, 14, 12, 0.35);
+      border: 1px solid rgba(165, 188, 214, 0.20);
+      border-radius: 12px;
+      font-size: 0.82rem;
+      color: #D4E3ED;
+    }
+    .btn-link-letgo {
+      background: linear-gradient(135deg, rgba(165, 188, 214, 0.30), rgba(132, 154, 173, 0.15));
+      border: 1px solid rgba(165, 188, 214, 0.45);
+      color: var(--transparent-yellow);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: all 0.18s ease;
+    }
+    .btn-link-letgo:hover {
+      background: rgba(165, 188, 214, 0.50);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .letgo-header {
+      text-align: center;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      background: rgba(20, 14, 12, 0.35);
+      border-radius: 16px;
+      border: 1px solid rgba(165, 188, 214, 0.20);
+    }
+    .letgo-header-icon {
+      font-size: 2.2rem;
+      margin-bottom: 4px;
+    }
+    .letgo-header h3 {
+      font-size: 1.15rem;
+      color: var(--transparent-yellow);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .letgo-header p {
+      font-size: 0.82rem;
+      color: #D4E3ED;
+      line-height: 1.45;
+    }
+    .btn-let-go-item-primary {
+      background: linear-gradient(135deg, #7FA0B8, var(--cerulean-blue));
+      color: var(--java-brown);
+      font-size: 0.78rem;
+      padding: 7px 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 239, 198, 0.35);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(132, 154, 173, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .btn-let-go-item-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(132, 154, 173, 0.55);
+    }
+    .empty-letgo-card {
+      text-align: center;
+      padding: 32px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      border: 1px dashed rgba(165, 188, 214, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .empty-letgo-card h4 {
+      font-size: 1.05rem;
+      color: var(--transparent-yellow);
+      margin-top: 4px;
+    }
+    .empty-letgo-card p {
+      font-size: 0.84rem;
+      color: var(--cloudy-valley);
+      line-height: 1.4;
+    }
+    .btn-subtle-quotes {
+      width: 100%;
+      margin-top: 14px;
+      background: transparent;
+      border: 1px dashed rgba(165, 188, 214, 0.30);
+      color: var(--cloudy-valley);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .btn-subtle-quotes:hover {
+      border-color: var(--transparent-yellow);
+      color: var(--transparent-yellow);
+      background: rgba(165, 188, 214, 0.12);
+    }
+
+    .photo-dropzone {
+      border: 2px dashed rgba(165, 188, 214, 0.35);
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(20, 14, 12, 0.35);
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .photo-dropzone:hover, .photo-dropzone.dragover {
+      border-color: var(--transparent-yellow);
+      background: rgba(165, 188, 214, 0.14);
+    }
+    .dropzone-prompt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .photo-icon { font-size: 1.8rem; }
+    .photo-text { font-size: 0.88rem; font-weight: 700; color: var(--text-rich); }
+    .photo-subtext { font-size: 0.74rem; color: var(--cloudy-valley); }
+
+    .photo-preview-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .photo-preview-img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+      border: 1px solid rgba(245, 239, 198, 0.3);
+      display: block;
+      margin: 0 auto;
+    }
+    .btn-remove-photo {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--red-oxide);
+      color: #fff;
+      border: 1px solid rgba(255, 199, 199, 0.4);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn-remove-photo:hover { background: #8E2B35; color: #fff; }
+
+    .override-result {
+      margin-top: 20px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(135deg, var(--transparent-yellow) 0%, #f0dfa8 100%);
+      color: var(--java-brown);
+      border-radius: 16px;
+      display: none;
+      box-shadow: 0 14px 28px rgba(35, 24, 21, 0.35);
+      border: 2px solid rgba(94, 28, 35, 0.6);
+      animation: slideUp 0.35s ease;
+    }
+    .override-result.show { display: block; }
+    .override-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--red-oxide);
+      margin-bottom: 8px;
+      display: inline-block;
+      background: rgba(94, 28, 35, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    
+    .override-image-wrap {
+      margin-bottom: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      max-height: 280px;
+      box-shadow: 0 6px 18px rgba(35, 24, 21, 0.25);
+    }
+    .override-photo {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .override-text { font-size: 1.08rem; line-height: 1.5; font-weight: 600; color: var(--java-brown); }
+
+    .btn-let-go-hero {
+      margin-top: 14px;
+      background: linear-gradient(135deg, #7FA0B8 0%, var(--cerulean-blue) 100%);
+      color: var(--java-brown);
+      border: 1px solid rgba(245, 239, 198, 0.35);
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 11px 16px;
+      border-radius: 10px;
+      display: none;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(132, 154, 173, 0.35);
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .btn-let-go-hero:hover {
+      background: linear-gradient(135deg, #8FB2CB 0%, #B8D0EB 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(132, 154, 173, 0.55);
+    }
+
+    .filter-group { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .sub-tab {
+      padding: 7px 12px;
+      background: rgba(165, 188, 214, 0.12);
+      border: 1px solid rgba(165, 188, 214, 0.22);
+      color: var(--cloudy-valley);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .sub-tab.active {
+      background: linear-gradient(135deg, var(--transparent-yellow), #ecdca0);
+      color: var(--java-brown);
+      border-color: transparent;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .memory-list { max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; }
+    .memory-item {
+      background: rgba(20, 14, 12, 0.38);
+      border: 1px solid rgba(165, 188, 214, 0.18);
+      padding: 12px 14px 10px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .memory-content-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .memory-thumb {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      flex-shrink: 0;
+      border: 1px solid rgba(245, 239, 198, 0.35);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      transition: transform 0.15s ease;
+    }
+    .memory-thumb:hover { transform: scale(1.06); }
+    .memory-text {
+      flex: 1;
+      font-size: 0.95rem;
+      word-break: break-word;
+      line-height: 1.45;
+    }
+
+    .edit-photo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .remove-photo-label {
+      font-size: 0.82rem;
+      color: #ffc7c7;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .memory-actions { display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
+    .sm-btn {
+      padding: 6px 12px;
+      border-radius: 7px;
+      border: none;
+      font-size: 0.74rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+    .sm-btn:hover { transform: translateY(-1px); }
+    .btn-edit { background: rgba(165, 188, 214, 0.18); color: var(--transparent-yellow); border: 1px solid rgba(165, 188, 214, 0.3); }
+    .btn-delete { background: rgba(94, 28, 35, 0.45); color: #ffcccc; border: 1px solid rgba(94, 28, 35, 0.6); }
+    .btn-save { background: linear-gradient(135deg, #7FA0B8, var(--cerulean-blue)); color: var(--java-brown); }
+    .btn-let-go-item {
+      background: linear-gradient(135deg, rgba(165, 188, 214, 0.28), rgba(132, 154, 173, 0.15));
+      color: var(--transparent-yellow);
+      border: 1px solid rgba(165, 188, 214, 0.45);
+    }
+    .btn-let-go-item:hover {
+      background: rgba(165, 188, 214, 0.5);
+      color: #fff;
+    }
+
+    .add-quote-box {
+      display: none;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .add-quote-box input {
+      flex: 1;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+    .add-quote-box button {
+      white-space: nowrap;
+      padding: 10px 16px;
+      font-size: 0.84rem;
+    }
+    .quote-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-default {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--cloudy-valley);
+    }
+    .badge-custom {
+      background: rgba(165, 188, 214, 0.28);
+      color: var(--transparent-yellow);
+      border: 1px solid rgba(165, 188, 214, 0.45);
+    }
+
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 14, 12, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: pointer;
+      animation: fadeIn 0.2s ease;
+    }
+    .lightbox-modal.show { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 14px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.65);
+      border: 1px solid rgba(245, 239, 198, 0.3);
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .celebration-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 14, 12, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      animation: fadeIn 0.25s ease;
+    }
+    .celebration-modal.show { display: flex; }
+    .celebration-card {
+      background: linear-gradient(180deg, rgba(35, 24, 21, 0.98), rgba(52, 36, 32, 0.96));
+      border: 1px solid rgba(245, 239, 198, 0.38);
+      border-radius: 24px;
+      padding: 32px 24px 26px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(165, 188, 214, 0.2);
+      position: relative;
+      animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .celebration-icon {
+      font-size: 3rem;
+      margin-bottom: 8px;
+      display: inline-block;
+      animation: pulse 1.8s infinite;
+    }
+    .celebration-title {
+      font-family: 'VT323', monospace;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      color: var(--transparent-yellow);
+      margin-bottom: 4px;
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .celebration-subtitle {
+      font-size: 0.82rem;
+      color: var(--cloudy-valley);
+      font-weight: 600;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .celebration-quote-box {
+      background: rgba(20, 14, 12, 0.55);
+      border: 1px solid rgba(165, 188, 214, 0.22);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .celebration-quote {
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-weight: 500;
+      color: var(--text-rich);
+      font-style: italic;
+    }
+    .btn-celebration-close {
+      background: linear-gradient(135deg, #7FA0B8, var(--cerulean-blue));
+      color: var(--java-brown);
+      border: 1px solid rgba(245, 239, 198, 0.4);
+      border-radius: 12px;
+      padding: 13px 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(132, 154, 173, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .btn-celebration-close:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(132, 154, 173, 0.55);
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1099;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(35, 24, 21, 0.96);
+      color: var(--transparent-yellow);
+      padding: 11px 22px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(165, 188, 214, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .shortcut-hint {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--cloudy-valley);
+      margin-top: 6px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Overwrite 💖</h1>
+      <p>Let the good moments overwrite the heavy ones.</p>
+    </header>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab-btn active" id="tabBad" onclick="switchTab('bad')">Vent / Overwrite</button>
+        <button class="tab-btn" id="tabGood" onclick="switchTab('good')">+ Seed Good</button>
+        <button class="tab-btn" id="tabLetGo" onclick="switchTab('letgo')">🕊️ Let Go</button>
+        <button class="tab-btn" id="tabManage" onclick="switchTab('manage')">⚙️ Manage All</button>
+      </div>
+
+      <div id="formBad">
+        <textarea id="badInput" placeholder="What's bothering or weighing on you right now?" onkeydown="if((event.ctrlKey || event.metaKey) && event.key === 'Enter') submitBad()"></textarea>
+        <button class="btn btn-bad" onclick="submitBad()">Overwrite Bad Memory</button>
+        <span class="shortcut-hint">Tip: Press Ctrl + Enter to submit</span>
+
+        <div class="quick-letgo-bar">
+          <span>Ready to release past thoughts?</span>
+          <button type="button" class="btn-link-letgo" onclick="switchTab('letgo')">Open Let Go 🕊️</button>
+        </div>
+
+        <div class="override-result" id="resultCard">
+          <div class="override-tag">✨ Good Memory Overwrite</div>
+          <div id="overrideImageWrap" class="override-image-wrap" style="display: none;">
+            <img id="overrideImg" class="override-photo" alt="Good memory photo" />
+          </div>
+          <div class="override-text" id="resultText"></div>
+          <button id="btnLetGoVented" class="btn-let-go-hero" onclick="letGoVented()">🕊️ Let Go & Release This Thought</button>
+        </div>
+      </div>
+
+      <div id="formGood" style="display: none;">
+        <div class="photo-dropzone" id="photoDropzone" onclick="document.getElementById('goodPhotoInput').click()">
+          <input type="file" id="goodPhotoInput" accept="image/*" style="display: none;" onchange="handlePhotoSelect(event)">
+          <div id="dropzonePrompt" class="dropzone-prompt">
+            <span class="photo-icon">📷</span>
+            <span class="photo-text">Click or drop a photo to attach</span>
+            <span class="photo-subtext">JPG, PNG, GIF, WEBP (optional)</span>
+          </div>
+          <div id="photoPreviewWrap" class="photo-preview-wrap" style="display: none;">
+            <img id="photoPreviewImg" class="photo-preview-img" alt="Preview">
+            <button type="button" class="btn-remove-photo" onclick="removeSelectedPhoto(event)">✕ Remove</button>
+          </div>
+        </div>
+
+        <textarea id="goodInput" placeholder="Write a caption or describe this moment..." onkeydown="if((event.ctrlKey || event.metaKey) && event.key === 'Enter') submitGood()"></textarea>
+        <button class="btn btn-good" id="btnSaveGood" onclick="submitGood()">Save Good Memory</button>
+        <span class="shortcut-hint">Tip: Press Ctrl + Enter to save</span>
+      </div>
+
+      <div id="formLetGo" style="display: none;">
+        <div class="letgo-header">
+          <div class="letgo-header-icon">🕊️</div>
+          <h3>Release Past Thoughts</h3>
+          <p>Choose any heavy thought below to release it, honor what you learned, and celebrate moving forward.</p>
+        </div>
+
+        <div class="memory-list" id="dedicatedLetGoList">
+        </div>
+
+        <button type="button" class="btn-subtle-quotes" onclick="switchTab('manage'); loadManageList('quotes');">
+          ✨ View & Add Custom Encouragement Quotes
+        </button>
+      </div>
+
+      <div id="formManage" style="display: none;">
+        <div class="filter-group">
+          <button class="sub-tab active" id="subGood" onclick="loadManageList('good')">Good Memories</button>
+          <button class="sub-tab" id="subBad" onclick="loadManageList('bad')">Bad Memories</button>
+          <button class="sub-tab" id="subQuotes" onclick="loadManageList('quotes')">🌱 Let Go Quotes</button>
+        </div>
+
+        <div class="add-quote-box" id="addQuoteBox">
+          <input type="text" id="newQuoteInput" placeholder="Add custom congratulation/growth message..." onkeydown="if(event.key === 'Enter') addCustomQuote()" />
+          <button class="sm-btn btn-save" onclick="addCustomQuote()">+ Add Quote</button>
+        </div>
+
+        <div class="memory-list" id="memoryList">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightboxImg" class="lightbox-img" alt="Enlarged photo">
+  </div>
+
+  <div id="celebrationModal" class="celebration-modal" onclick="closeCelebrationModal(event)">
+    <div class="celebration-card" onclick="event.stopPropagation()">
+      <div class="celebration-icon">🕊️</div>
+      <h2 class="celebration-title">You Let It Go!</h2>
+      <div class="celebration-subtitle">Honoring your growth and closure</div>
+      <div class="celebration-quote-box">
+        <p class="celebration-quote" id="celebrationQuote"></p>
+      </div>
+      <button class="btn-celebration-close" onclick="closeCelebrationModal()">I feel lighter ✨</button>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    let activeManageType = 'good';
+    let memoriesCache = {};
+    let selectedGoodFile = null;
+    let currentVentedBadId = null;
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    function switchTab(mode) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('formBad').style.display = 'none';
+      document.getElementById('formGood').style.display = 'none';
+      document.getElementById('formLetGo').style.display = 'none';
+      document.getElementById('formManage').style.display = 'none';
+
+      if (mode === 'bad') {
+        document.getElementById('tabBad').classList.add('active');
+        document.getElementById('formBad').style.display = 'block';
+        document.getElementById('badInput').focus();
+      } else if (mode === 'good') {
+        document.getElementById('tabGood').classList.add('active');
+        document.getElementById('formGood').style.display = 'block';
+        document.getElementById('goodInput').focus();
+      } else if (mode === 'letgo') {
+        document.getElementById('tabLetGo').classList.add('active');
+        document.getElementById('formLetGo').style.display = 'block';
+        loadDedicatedLetGoList();
+      } else if (mode === 'manage') {
+        document.getElementById('tabManage').classList.add('active');
+        document.getElementById('formManage').style.display = 'block';
+        loadManageList(activeManageType);
+      }
+    }
+
+    function handlePhotoSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        showToast('Please select an image file (PNG, JPG, WEBP, GIF)');
+        return;
+      }
+      selectedGoodFile = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('photoPreviewImg').src = e.target.result;
+        document.getElementById('photoPreviewWrap').style.display = 'inline-block';
+        document.getElementById('dropzonePrompt').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeSelectedPhoto(event) {
+      if (event) event.stopPropagation();
+      selectedGoodFile = null;
+      document.getElementById('goodPhotoInput').value = '';
+      document.getElementById('photoPreviewImg').src = '';
+      document.getElementById('photoPreviewWrap').style.display = 'none';
+      document.getElementById('dropzonePrompt').style.display = 'flex';
+    }
+
+    const dropzone = document.getElementById('photoDropzone');
+    if (dropzone) {
+      ['dragenter', 'dragover'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.add('dragover');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.remove('dragover');
+        });
+      });
+      dropzone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files && files.length > 0) {
+          handlePhotoSelect({ target: { files: files } });
+        }
+      });
+    }
+
+    window.addEventListener('paste', (e) => {
+      if (document.getElementById('formGood').style.display !== 'none') {
+        const items = (e.clipboardData || window.clipboardData).items;
+        for (let item of items) {
+          if (item.type.indexOf('image') === 0) {
+            const file = item.getAsFile();
+            handlePhotoSelect({ target: { files: [file] } });
+            showToast('Photo pasted from clipboard!');
+            break;
+          }
+        }
+      }
+    });
+
+    async function submitBad() {
+      const input = document.getElementById('badInput');
+      const resultCard = document.getElementById('resultCard');
+      const resultText = document.getElementById('resultText');
+      const overrideImageWrap = document.getElementById('overrideImageWrap');
+      const overrideImg = document.getElementById('overrideImg');
+      const btnLetGo = document.getElementById('btnLetGoVented');
+
+      if (!input.value.trim()) return;
+
+      try {
+        const res = await fetch('/api/override', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: input.value })
+        });
+        const data = await res.json();
+
+        currentVentedBadId = data.bad_memory_id || null;
+
+        resultCard.classList.remove('show');
+        if (data.override && data.override.content) {
+          resultText.innerText = `"${data.override.content}"`;
+          if (data.override.image_url) {
+            overrideImg.src = data.override.image_url;
+            overrideImageWrap.style.display = 'block';
+          } else {
+            overrideImageWrap.style.display = 'none';
+            overrideImg.src = '';
+          }
+        } else {
+          overrideImageWrap.style.display = 'none';
+          overrideImg.src = '';
+          resultText.innerText = data.message || 'No good memories saved yet. Head to "+ Seed Good" to add some!';
+        }
+
+        if (currentVentedBadId) {
+          btnLetGo.style.display = 'block';
+          btnLetGo.textContent = '🕊️ Let Go & Release This Thought';
+          btnLetGo.disabled = false;
+        } else {
+          btnLetGo.style.display = 'none';
+        }
+
+        setTimeout(() => resultCard.classList.add('show'), 50);
+        input.value = '';
+      } catch (err) {
+        showToast('Could not process override.');
+      }
+    }
+
+    async function letGoVented() {
+      if (!currentVentedBadId) return;
+      const btnLetGo = document.getElementById('btnLetGoVented');
+      btnLetGo.disabled = true;
+
+      try {
+        const res = await fetch(`/api/memories/bad/${currentVentedBadId}/let-go`, { method: 'POST' });
+        const data = await res.json();
+        btnLetGo.textContent = '✨ Released & Let Go';
+        currentVentedBadId = null;
+        showCelebrationModal(data.congrats);
+      } catch (err) {
+        showToast('Could not process release.');
+        btnLetGo.disabled = false;
+      }
+    }
+
+    async function submitGood() {
+      const input = document.getElementById('goodInput');
+      const btn = document.getElementById('btnSaveGood');
+      if (!input.value.trim()) {
+        showToast('Please write a caption or describe the moment.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('content', input.value.trim());
+      if (selectedGoodFile) {
+        formData.append('image', selectedGoodFile);
+      }
+
+      try {
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+        const res = await fetch('/api/good', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to save');
+
+        showToast('✨ Good memory saved!');
+        input.value = '';
+        removeSelectedPhoto();
+        switchTab('bad');
+      } catch (err) {
+        showToast(err.message || 'Failed to save memory.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Save Good Memory';
+      }
+    }
+
+    async function loadDedicatedLetGoList() {
+      const listContainer = document.getElementById('dedicatedLetGoList');
+      listContainer.innerHTML = '<p style="color: var(--cloudy-valley); font-size: 0.85rem; text-align: center;">Loading memories to release...</p>';
+
+      try {
+        const res = await fetch('/api/memories/bad');
+        const list = await res.json();
+
+        if (list.length === 0) {
+          listContainer.innerHTML = `
+            <div class="empty-letgo-card">
+              <span style="font-size: 2.2rem;">🌱</span>
+              <h4>Your Mind Is Clear</h4>
+              <p>No lingering heavy thoughts recorded. You have released them all!</p>
+            </div>
+          `;
+          return;
+        }
+
+        listContainer.innerHTML = list.map(item => `
+          <div class="memory-item" id="dedicated-item-${item.id}">
+            <span class="memory-text" style="font-size: 0.95rem; line-height: 1.45;">${escapeHtml(item.content)}</span>
+            <div class="memory-actions">
+              <button class="sm-btn btn-let-go-item-primary" onclick="letGoFromDedicatedView(${item.id})">🕊️ Let Go & Move On</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        listContainer.innerHTML = '<p style="color: #ff9999; font-size: 0.85rem;">Failed to load memories.</p>';
+      }
+    }
+
+    async function letGoFromDedicatedView(id) {
+      try {
+        const res = await fetch(`/api/memories/bad/${id}/let-go`, { method: 'POST' });
+        const data = await res.json();
+        showCelebrationModal(data.congrats);
+        loadDedicatedLetGoList();
+      } catch (err) {
+        showToast('Could not release memory.');
+      }
+    }
+
+    async function loadManageList(type) {
+      activeManageType = type;
+      document.getElementById('subGood').className = type === 'good' ? 'sub-tab active' : 'sub-tab';
+      document.getElementById('subBad').className = type === 'bad' ? 'sub-tab active' : 'sub-tab';
+      document.getElementById('subQuotes').className = type === 'quotes' ? 'sub-tab active' : 'sub-tab';
+
+      const listContainer = document.getElementById('memoryList');
+      const addQuoteBox = document.getElementById('addQuoteBox');
+
+      if (type === 'quotes') {
+        addQuoteBox.style.display = 'flex';
+        listContainer.innerHTML = '<p style="color: var(--cloudy-valley); font-size: 0.85rem;">Loading quotes...</p>';
+
+        try {
+          const res = await fetch('/api/let-go/messages');
+          const quotes = await res.json();
+
+          if (quotes.length === 0) {
+            listContainer.innerHTML = '<p style="color: var(--cloudy-valley); font-size: 0.85rem;">No let-go messages recorded yet.</p>';
+            return;
+          }
+
+          listContainer.innerHTML = quotes.map(q => `
+            <div class="memory-item">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                <span style="font-size: 0.92rem; line-height: 1.45; font-style: italic;">"${escapeHtml(q.content)}"</span>
+                <span class="quote-badge ${q.is_custom ? 'badge-custom' : 'badge-default'}">${q.is_custom ? 'Custom' : 'Default'}</span>
+              </div>
+              ${q.is_custom ? `
+                <div class="memory-actions">
+                  <button class="sm-btn btn-delete" onclick="deleteQuote(${q.id})">Delete</button>
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+        } catch (err) {
+          listContainer.innerHTML = '<p style="color: #ff9999; font-size: 0.85rem;">Failed to load quotes.</p>';
+        }
+        return;
+      }
+
+      addQuoteBox.style.display = 'none';
+      listContainer.innerHTML = '<p style="color: var(--cloudy-valley); font-size: 0.85rem;">Loading...</p>';
+
+      try {
+        const res = await fetch(`/api/memories/${type}`);
+        const data = await res.json();
+        memoriesCache = {};
+
+        if (data.length === 0) {
+          listContainer.innerHTML = `<p style="color: var(--cloudy-valley); font-size: 0.85rem;">No ${type} memories recorded yet.</p>`;
+          return;
+        }
+
+        data.forEach(item => {
+          memoriesCache[item.id] = { content: item.content, image_url: item.image_url || null };
+        });
+
+        listContainer.innerHTML = data.map(item => `
+          <div class="memory-item" id="item-${item.id}">
+            <div class="memory-content-row">
+              ${item.image_url ? `<img src="${escapeAttribute(item.image_url)}" class="memory-thumb" onclick="openLightbox('${escapeAttribute(item.image_url)}')" title="Click to enlarge" />` : ''}
+              <span id="text-${item.id}" class="memory-text">${escapeHtml(item.content)}</span>
+            </div>
+            <div class="memory-actions">
+              ${type === 'bad' ? `<button class="sm-btn btn-let-go-item" onclick="letGoBadMemory(${item.id})">🕊️ Let Go</button>` : ''}
+              <button class="sm-btn btn-edit" onclick="enableEdit(${item.id})">Edit</button>
+              <button class="sm-btn btn-delete" onclick="deleteMemory('${type}', ${item.id})">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        listContainer.innerHTML = '<p style="color: #ff9999; font-size: 0.85rem;">Failed to load memories.</p>';
+      }
+    }
+
+    async function letGoBadMemory(id) {
+      try {
+        const res = await fetch(`/api/memories/bad/${id}/let-go`, { method: 'POST' });
+        const data = await res.json();
+        showCelebrationModal(data.congrats);
+        loadManageList('bad');
+      } catch (err) {
+        showToast('Could not release memory.');
+      }
+    }
+
+    async function addCustomQuote() {
+      const input = document.getElementById('newQuoteInput');
+      if (!input || !input.value.trim()) return;
+
+      try {
+        const res = await fetch('/api/let-go/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: input.value.trim() })
+        });
+        if (!res.ok) throw new Error();
+        input.value = '';
+        showToast('✨ Custom encouragement message added!');
+        loadManageList('quotes');
+      } catch (err) {
+        showToast('Failed to add message.');
+      }
+    }
+
+    async function deleteQuote(id) {
+      if (!confirm('Are you sure you want to delete this custom quote?')) return;
+      try {
+        await fetch(`/api/let-go/messages/${id}`, { method: 'DELETE' });
+        showToast('Quote deleted.');
+        loadManageList('quotes');
+      } catch (err) {
+        showToast('Failed to delete quote.');
+      }
+    }
+
+    function enableEdit(id) {
+      const item = memoriesCache[id] || { content: '' };
+      const itemNode = document.getElementById(`item-${id}`);
+      itemNode.innerHTML = `
+        <div class="memory-edit-wrap">
+          ${item.image_url ? `
+            <div class="edit-photo-row">
+              <img src="${escapeAttribute(item.image_url)}" class="memory-thumb" onclick="openLightbox('${escapeAttribute(item.image_url)}')" />
+              <label class="remove-photo-label"><input type="checkbox" id="edit-remove-photo-${id}"> Remove photo</label>
+            </div>
+          ` : ''}
+          <input type="text" id="edit-input-${id}" value="${escapeAttribute(item.content)}" onkeydown="handleEditKey(event, '${activeManageType}', ${id})" />
+          <div class="memory-actions" style="margin-top: 8px;">
+            <button class="sm-btn btn-save" onclick="saveEdit('${activeManageType}', ${id})">Save</button>
+            <button class="sm-btn btn-edit" onclick="loadManageList('${activeManageType}')">Cancel</button>
+          </div>
+        </div>
+      `;
+      const input = document.getElementById(`edit-input-${id}`);
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
+
+    function handleEditKey(event, type, id) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        saveEdit(type, id);
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        loadManageList(type);
+      }
+    }
+
+    async function saveEdit(type, id) {
+      const input = document.getElementById(`edit-input-${id}`);
+      if (!input) return;
+      const newContent = input.value;
+      if (!newContent.trim()) return;
+
+      const removePhotoCb = document.getElementById(`edit-remove-photo-${id}`);
+      const removePhoto = removePhotoCb ? removePhotoCb.checked : false;
+
+      try {
+        await fetch(`/api/memories/${type}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            content: newContent,
+            removeImage: removePhoto
+          })
+        });
+        showToast('Memory updated!');
+        loadManageList(type);
+      } catch (err) {
+        showToast('Failed to update memory.');
+      }
+    }
+
+    async function deleteMemory(type, id) {
+      if (!confirm('Are you sure you want to delete this memory?')) return;
+
+      try {
+        await fetch(`/api/memories/${type}/${id}`, { method: 'DELETE' });
+        showToast('Memory deleted.');
+        loadManageList(type);
+      } catch (err) {
+        showToast('Failed to delete memory.');
+      }
+    }
+
+    function openLightbox(url) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = url;
+      modal.classList.add('show');
+    }
+
+    function closeLightbox(event) {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.remove('show');
+      document.getElementById('lightboxImg').src = '';
+    }
+
+    function showCelebrationModal(quoteText) {
+      document.getElementById('celebrationQuote').textContent = `"${quoteText}"`;
+      document.getElementById('celebrationModal').classList.add('show');
+      launchConfetti();
+    }
+
+    function closeCelebrationModal() {
+      document.getElementById('celebrationModal').classList.remove('show');
+    }
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const pieces = [];
+      const colors = ['#F5EFC6', '#A5BCD6', '#B1C7D4', '#FFFDF9', '#849AAD', '#5E1C23', '#A1947F'];
+
+      for (let i = 0; i < 85; i++) {
+        pieces.push({
+          x: canvas.width / 2 + (Math.random() - 0.5) * 60,
+          y: canvas.height / 2 + (Math.random() - 0.5) * 40,
+          w: Math.random() * 8 + 5,
+          h: Math.random() * 6 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.75) * 18,
+          tilt: Math.random() * 10,
+          tiltSpeed: (Math.random() - 0.5) * 0.22,
+          opacity: 1
+        });
+      }
+
+      const startTime = Date.now();
+
+      function frame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const elapsed = Date.now() - startTime;
+        let alive = false;
+
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.38;
+          p.vx *= 0.97;
+          p.tilt += p.tiltSpeed;
+          if (elapsed > 1800) {
+            p.opacity = Math.max(0, p.opacity - 0.025);
+          }
+          if (p.opacity > 0) alive = true;
+
+          ctx.save();
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.tilt);
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+
+        if (alive && elapsed < 3500) {
+          requestAnimationFrame(frame);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      frame();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function escapeAttribute(text) {
+      return (text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+  </script>
+</body>
+</html>
